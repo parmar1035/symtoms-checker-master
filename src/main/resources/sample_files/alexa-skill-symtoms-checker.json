@@ -1,0 +1,44 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "Symtoms Checker",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "WelcomeSymtomsCheckerIntent",
+                    "slots": [],
+                    "samples": [
+                        "welcome symtoms checker",
+                        "say hello",
+                        "say hello symtoms checker",
+                        "hello",
+                        "say hi",
+                        "say hi symtoms checker",
+                        "hi",
+                        "how are you"
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+}

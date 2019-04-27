@@ -1,1 +1,1 @@
-# symtoms-checker-master
+# alexa-symtoms-checker

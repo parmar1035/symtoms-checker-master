@@ -1,0 +1,84 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+	<!-- Enabling Properties file -->
+	<bean
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:resources/project.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+
+	<bean id="cancelHandler"
+		class="com.symtoms.checker.alexa.handler.CancelandStopIntentHandler">
+		<property name="intentName" value="AMAZON.CancelIntent" />
+	</bean>
+	<bean id="stopHandler"
+		class="com.symtoms.checker.alexa.handler.CancelandStopIntentHandler">
+		<property name="intentName" value="AMAZON.StopIntent" />
+	</bean>
+
+	<bean id="fallbackHandler"
+		class="com.symtoms.checker.alexa.handler.FallbackIntentHandler">
+		<property name="intentName" value="AMAZON.FallbackIntent" />
+	</bean>
+	<bean id="welcomeSymtomsCheckerHandler"
+		class="com.symtoms.checker.alexa.handler.WelcomeSymtomsCheckerIntentHandler">
+		<property name="intentName" value="WelcomeSymtomsCheckerIntent" />
+		<property name="speachName" value="welcomeSymtomsChecker" />
+   		<property name="cardName" value="welcomeSymtomsChecker" />
+	</bean>
+	<bean id="helpHandler"
+		class="com.symtoms.checker.alexa.handler.HelpIntentHandler">
+		<property name="intentName" value="AMAZON.HelpIntent" />
+		<property name="speachName" value="helpSymtomsChecker" />
+		<property name="repromptName" value="helpSymtomsChecker"/>
+   		<property name="cardName" value="helpSymtomsChecker" />
+	</bean>
+	
+	<bean id="launchRequestHandler"
+		class="com.symtoms.checker.alexa.handler.LaunchRequestHandler">
+		<property name="intentName" value="AMAZON.LaunchRequest" />
+		<property name="speachName" value="launchSymtomsChecker" />
+		<property name="repromptName" value="launchSymtomsChecker"/>
+   		<property name="cardName" value="launchSymtomsChecker" />
+	</bean>
+	
+	<bean id="sessionEndedHandler"
+		class="com.symtoms.checker.alexa.handler.SessionEndedRequestHandler">
+		<property name="intentName" value="SessionEndedRequest" />
+	</bean>
+	<bean id="handlerDetails"
+		class="com.symtoms.checker.alexa.data.HandlerDetails">
+		<property name="handlerList">
+			<list
+				value-type="com.amazon.ask.dispatcher.request.handler.RequestHandler">
+				<ref bean="cancelHandler" />
+				<ref bean="stopHandler" />
+				<ref bean="fallbackHandler" />
+				<ref bean="helpHandler" />
+				<ref bean="welcomeSymtomsCheckerHandler" />
+				<ref bean="launchRequestHandler" />
+				<ref bean="sessionEndedHandler" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Importing separate Spring Rest Template configurations -->
+	<!-- Importing separate Spring Integration configurations -->
+	<import resource="classpath:resources/integration/symtoms-checker-common-integration.xml"/>	
+	
+</beans>
