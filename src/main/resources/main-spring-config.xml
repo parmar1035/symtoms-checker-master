@@ -77,6 +77,9 @@
 		</property>
 	</bean>
 
+		<bean id="diagnosisClient"
+		class="com.symtoms.checker.alexa.integration.client.impl.DefaultDiagnosisClient" />
+	
 	<!-- Importing separate Spring Rest Template configurations -->
 	<!-- Importing separate Spring Integration configurations -->
 	<import resource="classpath:resources/integration/symtoms-checker-common-integration.xml"/>	
