@@ -32,7 +32,7 @@ public class LaunchRequestHandler extends AbstractIntentHandler {
 	@Override
 	protected void handleInternal(HandlerInput input) {
 		
-		setSessionAttributes(input, "type", "help");
+		setSessionAttributes(input, "type", "launch");
 		LOG.error("Inside Launch Handler");
 	}
 
