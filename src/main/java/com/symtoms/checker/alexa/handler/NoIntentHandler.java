@@ -20,7 +20,6 @@ public class NoIntentHandler  extends AbstractIntentHandler {
 		String speechText = "";
 		
 		Object typeObject = getSessionAttributes(input,"type");
-		setSessionAttributes(input, "user_option", Boolean.FALSE);
 		if(null != typeObject && typeObject instanceof String) {
 			String type = (String) typeObject;
 			switch (type) {

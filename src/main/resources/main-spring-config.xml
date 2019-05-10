@@ -88,11 +88,12 @@
 		</property>
 	</bean>
 
-		<bean id="diagnosisClient"
+	<bean id="diagnosisClient"
 		class="com.symtoms.checker.alexa.integration.client.impl.DefaultDiagnosisClient" />
-	
-	<!-- Importing separate Spring Rest Template configurations -->
-	<!-- Importing separate Spring Integration configurations -->
-	<import resource="classpath:resources/integration/symtoms-checker-common-integration.xml"/>	
-	
+	<bean id="symtomsCheckerService"
+		class="com.symtoms.checker.alexa.service.impl.DefaultSymtomsCheckerService" />
+			
+	<bean id="symtomsRestTemplate" class="org.springframework.web.client.RestTemplate" />
+	<bean id="symtomsConnectivityClient" class="com.symtoms.checker.alexa.integration.client.impl.DefaultSymtomsConnectivityClient" />
+		
 </beans>

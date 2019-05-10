@@ -1,1 +1,1 @@
-Do you have pain in ${bodyLocation.Name}
+Do you have pain in ${bodyLocName}

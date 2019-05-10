@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazonaws.util.CollectionUtils;
+import com.symtoms.checker.alexa.data.SelectedSymtoms;
 import com.symtoms.checker.alexa.integration.client.DiagnosisClient;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
+import com.symtoms.checker.alexa.service.SymtomsCheckerService;
 
 public class BodyLocationIntentHandler extends AbstractIntentHandler {
 
@@ -18,29 +20,30 @@ public class BodyLocationIntentHandler extends AbstractIntentHandler {
 	
 	@Resource(name="diagnosisClient")
 	DiagnosisClient diagnosisClient; 
+
+	@Resource(name="symtomsCheckerService")
+	SymtomsCheckerService symtomsCheckerService; 
+
 	@Override
 	protected void handleInternal(HandlerInput input) {
 		
 		LOG.error("inside BodyLocationIntentHandler:");
-		Object locationObject = getSessionAttributes(input, "BodyLocation");
-		List<HealthItem> locationList = null;
-		Integer count = 0;
-		if(null != locationObject && locationObject instanceof List) {
-			locationList = (List) locationObject;
-		} else {
+		SelectedSymtoms selectedSymtoms  = symtomsCheckerService.getSymtomsFromSession(input);
+		
+		List<HealthItem> locationList = selectedSymtoms.getBodyLocationList();
+		
+		int index = selectedSymtoms.getBodyLocationCount();
+		
+		if(CollectionUtils.isNullOrEmpty(locationList)) {
 			locationList = diagnosisClient.loadBodyLocations();
-			setSessionAttributes(input, "BodyLocation",locationList);
-		}
-		Object countObject = getSessionAttributes(input, "BodyLocationCount");
-		if(null != countObject && countObject instanceof Integer) {
-			count = ((Integer) countObject) + 1;
+			selectedSymtoms.setBodyLocationList(locationList);
 		} 
-		if(locationList.size() <= count) {
-			count = 0;
-		}
-		setSessionAttributes(input, "BodyLocationCount", count);
+		HealthItem bodyLocation = locationList.get(index);
+		addModel(input, "bodyLocName", bodyLocation.Name);
+		selectedSymtoms.setBodyLocation(bodyLocation);
+		index = locationList.size() > (index + 1)?(index + 1):0;
+		selectedSymtoms.setBodyLocationCount(index);
+		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
 		setSessionAttributes(input, "type", "BodyLocation");
-		addModel(input, "bodyLocation", locationList.get(count));
-		LOG.error(locationList.get(count).Name);
 	}
 }

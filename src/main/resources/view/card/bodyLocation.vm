@@ -1,1 +1,1 @@
-Do you have pain in ${bodyLocation.name}
+Do you have pain in ${bodyLocName}
