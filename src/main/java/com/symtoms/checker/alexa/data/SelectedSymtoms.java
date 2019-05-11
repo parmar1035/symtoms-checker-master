@@ -1,6 +1,7 @@
 package com.symtoms.checker.alexa.data;
 
 import java.util.List;
+import java.util.Set;
 
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 
@@ -15,6 +16,10 @@ public class SelectedSymtoms {
 	private HealthItem selectedSpecificBodyLocation;
 	private List<HealthItem> specificBodyLocationList;
 	private int specificBodyLocationCount;
+	
+	private List<HealthItem> proposedSystomList;
+	private Set<Integer> selectedProposedSystomList;
+	private int specificProposedSystomCount;
 	
 	
 	
@@ -67,10 +72,22 @@ public class SelectedSymtoms {
 	public void setSpecificBodyLocationCount(int specificBodyLocationCount) {
 		this.specificBodyLocationCount = specificBodyLocationCount;
 	}
-	
-	
-	
-	
-	
-	
+	public List<HealthItem> getProposedSystomList() {
+		return proposedSystomList;
+	}
+	public void setProposedSystomList(List<HealthItem> proposedSystomList) {
+		this.proposedSystomList = proposedSystomList;
+	}
+	public Set<Integer> getSelectedProposedSystomList() {
+		return selectedProposedSystomList;
+	}
+	public void setSelectedProposedSystomList(Set<Integer> selectedProposedSystomList) {
+		this.selectedProposedSystomList = selectedProposedSystomList;
+	}
+	public int getSpecificProposedSystomCount() {
+		return specificProposedSystomCount;
+	}
+	public void setSpecificProposedSystomCount(int specificProposedSystomCount) {
+		this.specificProposedSystomCount = specificProposedSystomCount;
+	}
 }

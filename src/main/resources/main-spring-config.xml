@@ -72,6 +72,14 @@
    		<property name="repromptName" value="bodySpecificLocation" />
    		<property name="cardName" value="bodySpecificLocation" />
 	</bean>
+	<bean id="proposedSymtomsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.ProposedSymtomsIntentHandler">
+		<property name="intentName" value="ProposedSymtomsIntent" />
+		<property name="speachName" value="proposedSymtoms" />
+   		<property name="repromptName" value="proposedSymtoms" />
+   		<property name="cardName" value="proposedSymtoms" />
+	</bean>
+
 	<bean id="helpHandler"
 		class="com.symtoms.checker.alexa.handler.HelpIntentHandler">
 		<property name="intentName" value="AMAZON.HelpIntent" />
@@ -110,6 +118,8 @@
 				<ref bean="fallbackHandler" />
 				<ref bean="helpHandler" />
 				<ref bean="bodyLocationHandler" />
+				<ref bean="bodySpecificLocationIntentHandler" />
+				<ref bean="proposedSymtomsIntentHandler" />
 				<ref bean="launchRequestHandler" />
 				<ref bean="yesIntentHandler" />
 				<ref bean="noIntentHandler" />
