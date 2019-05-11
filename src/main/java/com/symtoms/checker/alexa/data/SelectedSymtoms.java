@@ -7,14 +7,18 @@ import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 public class SelectedSymtoms {
 	
 	private List<HealthItem> bodyLocationList;
-	private HealthItem bodyLocation;
+	private HealthItem selectedBodyLocation;
 	private int bodyLocationCount;
 	
-	public HealthItem getBodyLocation() {
-		return bodyLocation;
+	private HealthItem selectedSpecificBodyLocation;
+	private List<HealthItem> specificBodyLocationList;
+	private int specificBodyLocationCount;
+	
+	public HealthItem getSelectedBodyLocation() {
+		return selectedBodyLocation;
 	}
-	public void setBodyLocation(HealthItem bodyLocation) {
-		this.bodyLocation = bodyLocation;
+	public void setSelectedBodyLocation(HealthItem selectedBodyLocation) {
+		this.selectedBodyLocation = selectedBodyLocation;
 	}
 	public int getBodyLocationCount() {
 		return bodyLocationCount;
@@ -28,6 +32,28 @@ public class SelectedSymtoms {
 	public void setBodyLocationList(List<HealthItem> bodyLocationList) {
 		this.bodyLocationList = bodyLocationList;
 	}
+	public HealthItem getSelectedSpecificBodyLocation() {
+		return selectedSpecificBodyLocation;
+	}
+	public void setSelectedSpecificBodyLocation(HealthItem selectedSpecificBodyLocation) {
+		this.selectedSpecificBodyLocation = selectedSpecificBodyLocation;
+	}
+	public List<HealthItem> getSpecificBodyLocationList() {
+		return specificBodyLocationList;
+	}
+	public void setSpecificBodyLocationList(List<HealthItem> specificBodyLocationList) {
+		this.specificBodyLocationList = specificBodyLocationList;
+	}
+	public int getSpecificBodyLocationCount() {
+		return specificBodyLocationCount;
+	}
+	public void setSpecificBodyLocationCount(int specificBodyLocationCount) {
+		this.specificBodyLocationCount = specificBodyLocationCount;
+	}
+	
+	
+	
+	
 	
 	
 }

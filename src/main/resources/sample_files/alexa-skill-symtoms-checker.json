@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "health buddy",
+            "invocationName": "doctor",
             "intents": [
                 {
                     "name": "AMAZON.FallbackIntent",
@@ -37,6 +37,11 @@
                     "samples": [
                         "Test"
                     ]
+                },
+                {
+                    "name": "BodySpecificLocationIntent",
+                    "slots": [],
+                    "samples": []
                 }
             ],
             "types": []

@@ -1,6 +1,5 @@
 package com.symtoms.checker.alexa.handler;
 
-import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -8,13 +7,14 @@ import javax.annotation.Resource;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import com.symtoms.checker.alexa.handler.AbstractIntentHandler;
-import com.symtoms.checker.alexa.handler.HelpIntentHandler;
 
 public class NoIntentHandler  extends AbstractIntentHandler {
 
 	@Resource(name="bodyLocationHandler")
 	private BodyLocationIntentHandler bodyLocationHandler;
 
+	@Resource(name="bodySpecificLocationIntentHandler")
+	private BodySpecificLocationIntentHandler bodySpecificLocationIntentHandler;
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
 		String speechText = "";
@@ -25,6 +25,8 @@ public class NoIntentHandler  extends AbstractIntentHandler {
 			switch (type) {
 			case "BodyLocation":
 				return bodyLocationHandler.handle(input);
+			case "BodySpecificLocation":
+				return bodySpecificLocationIntentHandler.handle(input);
 			default:
 				speechText = "Sorry, I do not understand how to process that.";
 			}
