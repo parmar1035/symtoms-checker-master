@@ -24,10 +24,22 @@ public class DefaultSymtomsCheckerService implements SymtomsCheckerService{
 
 		if (input.getAttributesManager().getSessionAttributes().containsKey(SYMTOMS_SESSION_KEY)) {
 			
-			Map symtomsMap = (Map) input.getAttributesManager()
-										.getSessionAttributes()
-										.get(SYMTOMS_SESSION_KEY);
+			Object sessionAttribute = input.getAttributesManager().getSessionAttributes().get(SYMTOMS_SESSION_KEY);
+			if(sessionAttribute instanceof SelectedSymtoms) {
+				return (SelectedSymtoms)sessionAttribute;
+			}
+			
+			Map symtomsMap = (Map) sessionAttribute;
 			if (null != symtomsMap) {
+				
+				if (symtomsMap.containsKey("yearofbirth")) {
+					symtoms.setYearofbirth((int) symtomsMap.get("yearofbirth"));
+				}
+				if (symtomsMap.containsKey("gender")) {
+					symtoms.setGender((String)symtomsMap.get("gender"));
+				}
+				
+				
 				if (symtomsMap.containsKey("bodyLocationList")) {
 					List<Map> bodyLocationListMap = (List) symtomsMap.get("bodyLocationList");
 					List<HealthItem> bodyLocationList = new ArrayList<HealthItem>();

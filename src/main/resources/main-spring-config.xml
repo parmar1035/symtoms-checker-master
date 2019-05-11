@@ -35,6 +35,29 @@
 		class="com.symtoms.checker.alexa.handler.FallbackIntentHandler">
 		<property name="intentName" value="AMAZON.FallbackIntent" />
 	</bean>
+	<bean id="genderIdentificationIntentHandler"
+		class="com.symtoms.checker.alexa.handler.GenderIdentificationIntentHandler">
+		<property name="intentName" value="GenderIdentificationIntent" />
+		<property name="speachName" value="genderidentification" />
+   		<property name="repromptName" value="genderidentification" />
+   		<property name="cardName" value="genderidentification" />
+	</bean>
+	<bean id="genderCaptureIntentHandler"
+		class="com.symtoms.checker.alexa.handler.GenderCaptureIntentHandler">
+		<property name="intentName" value="GenderCaptureIntent" />
+		<property name="speachName" value="gendercapture" />
+   		<property name="repromptName" value="gendercapture" />
+   		<property name="cardName" value="gendercapture" />
+	</bean>
+	
+	<bean id="yearCaptureIntentHandler"
+		class="com.symtoms.checker.alexa.handler.YearCaptureIntentHandler">
+		<property name="intentName" value="YearCaptureIntent" />
+		<property name="speachName" value="yearcapture" />
+   		<property name="repromptName" value="yearcapture" />
+   		<property name="cardName" value="yearcapture" />
+	</bean>
+	
 	<bean id="bodyLocationHandler"
 		class="com.symtoms.checker.alexa.handler.BodyLocationIntentHandler">
 		<property name="intentName" value="BodyLocationIntent" />
@@ -91,6 +114,10 @@
 				<ref bean="yesIntentHandler" />
 				<ref bean="noIntentHandler" />
 				<ref bean="sessionEndedHandler" />
+				<ref bean="genderIdentificationIntentHandler" />
+				<ref bean="genderCaptureIntentHandler" />
+				<ref bean="yearCaptureIntentHandler" />
+				<ref bean="bodySpecificLocationIntentHandler" />
 			</list>
 		</property>
 	</bean>
