@@ -42,6 +42,36 @@
                     "name": "BodySpecificLocationIntent",
                     "slots": [],
                     "samples": []
+                },
+                {
+                    "name": "GenderIdentificationIntent",
+                    "slots": [],
+                    "samples": []
+                },
+                {
+                    "name": "GenderCaptureIntent",
+                    "slots": [
+                        {
+                            "name": "gender",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "i am {gender}"
+                    ]
+                },
+                {
+                    "name": "YearCaptureIntent",
+                    "slots": [
+                        {
+                            "name": "yearofbirth",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{yearofbirth} is my year of birth",
+                        "My year of birth is {yearofbirth}"
+                    ]
                 }
             ],
             "types": []
