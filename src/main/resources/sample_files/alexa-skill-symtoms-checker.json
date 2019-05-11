@@ -1,8 +1,12 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "Symtoms Checker",
+            "invocationName": "health buddy",
             "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
                 {
                     "name": "AMAZON.CancelIntent",
                     "samples": []
@@ -16,26 +20,23 @@
                     "samples": []
                 },
                 {
-                    "name": "WelcomeSymtomsCheckerIntent",
-                    "slots": [],
-                    "samples": [
-                        "welcome symtoms checker",
-                        "say hello",
-                        "say hello symtoms checker",
-                        "hello",
-                        "say hi",
-                        "say hi symtoms checker",
-                        "hi",
-                        "how are you"
-                    ]
-                },
-                {
-                    "name": "AMAZON.FallbackIntent",
-                    "samples": []
-                },
-                {
                     "name": "AMAZON.NavigateHomeIntent",
                     "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "BodyLocationIntent",
+                    "slots": [],
+                    "samples": [
+                        "Test"
+                    ]
                 }
             ],
             "types": []

@@ -240,9 +240,18 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 				sessionAttributes = new HashMap<>();
 			}
 			sessionAttributes.put(key, value);
-			//input.getAttributesManager().setSessionAttributes(sessionMap);
 		}
 		
+	}
+	protected Object getSessionAttributes(HandlerInput input, String key) {
+		Object value = null;
+		if(null != key ) {
+			Map<String, Object> sessionAttributes = input.getAttributesManager().getSessionAttributes();
+			if(null != sessionAttributes) {
+				value = sessionAttributes.get(key);
+			}
+		}
+		return value;
 	}
 
 }

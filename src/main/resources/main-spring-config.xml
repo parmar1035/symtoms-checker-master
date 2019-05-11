@@ -35,11 +35,12 @@
 		class="com.symtoms.checker.alexa.handler.FallbackIntentHandler">
 		<property name="intentName" value="AMAZON.FallbackIntent" />
 	</bean>
-	<bean id="welcomeSymtomsCheckerHandler"
-		class="com.symtoms.checker.alexa.handler.WelcomeSymtomsCheckerIntentHandler">
-		<property name="intentName" value="WelcomeSymtomsCheckerIntent" />
-		<property name="speachName" value="welcomeSymtomsChecker" />
-   		<property name="cardName" value="welcomeSymtomsChecker" />
+	<bean id="bodyLocationHandler"
+		class="com.symtoms.checker.alexa.handler.BodyLocationIntentHandler">
+		<property name="intentName" value="BodyLocationIntent" />
+		<property name="speachName" value="bodyLocation" />
+   		<property name="repromptName" value="bodyLocation" />
+   		<property name="cardName" value="bodyLocation" />
 	</bean>
 	<bean id="helpHandler"
 		class="com.symtoms.checker.alexa.handler.HelpIntentHandler">
@@ -47,6 +48,14 @@
 		<property name="speachName" value="helpSymtomsChecker" />
 		<property name="repromptName" value="helpSymtomsChecker"/>
    		<property name="cardName" value="helpSymtomsChecker" />
+	</bean>
+	<bean id="yesIntentHandler"
+		class="com.symtoms.checker.alexa.handler.YesIntentHandler">
+		<property name="intentName" value="AMAZON.YesIntent" />
+	</bean>
+	<bean id="noIntentHandler"
+		class="com.symtoms.checker.alexa.handler.NoIntentHandler">
+		<property name="intentName" value="AMAZON.NoIntent" />
 	</bean>
 	
 	<bean id="launchRequestHandler"
@@ -70,18 +79,21 @@
 				<ref bean="stopHandler" />
 				<ref bean="fallbackHandler" />
 				<ref bean="helpHandler" />
-				<ref bean="welcomeSymtomsCheckerHandler" />
+				<ref bean="bodyLocationHandler" />
 				<ref bean="launchRequestHandler" />
+				<ref bean="yesIntentHandler" />
+				<ref bean="noIntentHandler" />
 				<ref bean="sessionEndedHandler" />
 			</list>
 		</property>
 	</bean>
 
-		<bean id="diagnosisClient"
+	<bean id="diagnosisClient"
 		class="com.symtoms.checker.alexa.integration.client.impl.DefaultDiagnosisClient" />
-	
-	<!-- Importing separate Spring Rest Template configurations -->
-	<!-- Importing separate Spring Integration configurations -->
-	<import resource="classpath:resources/integration/symtoms-checker-common-integration.xml"/>	
-	
+	<bean id="symtomsCheckerService"
+		class="com.symtoms.checker.alexa.service.impl.DefaultSymtomsCheckerService" />
+			
+	<bean id="symtomsRestTemplate" class="org.springframework.web.client.RestTemplate" />
+	<bean id="symtomsConnectivityClient" class="com.symtoms.checker.alexa.integration.client.impl.DefaultSymtomsConnectivityClient" />
+		
 </beans>
