@@ -15,6 +15,10 @@ public class NoIntentHandler  extends AbstractIntentHandler {
 
 	@Resource(name="bodySpecificLocationIntentHandler")
 	private BodySpecificLocationIntentHandler bodySpecificLocationIntentHandler;
+	
+	@Resource(name="bodyLocationSymptonHandler")
+	private BodyLocationSymptonHandler bodyLocationSymptonHandler;
+	
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
 		String speechText = "";
@@ -27,6 +31,9 @@ public class NoIntentHandler  extends AbstractIntentHandler {
 				return bodyLocationHandler.handle(input);
 			case "BodySpecificLocation":
 				return bodySpecificLocationIntentHandler.handle(input);
+			case "BodyLocationSymptom":
+				return bodyLocationSymptonHandler.handle(input);
+				
 			default:
 				speechText = "Sorry, I do not understand how to process that.";
 			}

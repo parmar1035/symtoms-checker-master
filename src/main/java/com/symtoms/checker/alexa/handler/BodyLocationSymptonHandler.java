@@ -38,21 +38,24 @@ public class BodyLocationSymptonHandler extends AbstractIntentHandler {
 			return;
 		}
 		
-		List<HealthItem> locationList = selectedSymtoms.getSpecificBodyLocationList();
+		List<HealthSymptomSelector> healthSymptomSelectorList = selectedSymtoms.getBodyLocationSymptomList();
 		
-		int index = selectedSymtoms.getSpecificBodyLocationCount();
+		int index = selectedSymtoms.getSelectedBodyLocationSymptomCount();
 		
-		if(CollectionUtils.isNullOrEmpty(locationList)) {
-			List<HealthSymptomSelector> healthSymptomSelectors = diagnosisClient.loadSublocationSymptoms(selectedSpecificBodyLocation.ID, SelectorStatus.valueOf(selectedSymtoms.getGender()));
-			selectedSymtoms.setSpecificBodyLocationList(locationList);
+		if(CollectionUtils.isNullOrEmpty(healthSymptomSelectorList)) {
+			healthSymptomSelectorList = diagnosisClient.loadSublocationSymptoms(selectedSpecificBodyLocation.ID, findSelectorStatus(selectedSymtoms.getGender()));
+			selectedSymtoms.setBodyLocationSymptomList(healthSymptomSelectorList);
 		}
 		
-		HealthItem specificBodyLocation = locationList.get(index);
-		addModel(input, "bodyLocName", specificBodyLocation.Name);
-		selectedSymtoms.setSelectedSpecificBodyLocation(specificBodyLocation);
-		index = locationList.size() > (index + 1)?(index + 1):0;
-		selectedSymtoms.setSpecificBodyLocationCount(index);
+		HealthSymptomSelector symptomLocation = healthSymptomSelectorList.get(index);
+		addModel(input, "bodySymptomName", symptomLocation.Name);
+		selectedSymtoms.setSelectedSpecificBodyLocation(symptomLocation);
+		index = healthSymptomSelectorList.size() > (index + 1)?(index + 1):0;
+		selectedSymtoms.setSelectedBodyLocationSymptomCount(index);
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
-		setSessionAttributes(input, "type", "BodySpecificLocation");
+		setSessionAttributes(input, "type", "BodyLocationSymptom");
 	}
+	
+	
+	
 }

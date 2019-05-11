@@ -19,6 +19,8 @@ public class YesIntentHandler  extends AbstractIntentHandler {
 	private BodySpecificLocationIntentHandler bodySpecificLocationIntentHandler;
 	@Resource(name="genderIdentificationIntentHandler")
 	private GenderIdentificationIntentHandler genderIdentificationIntentHandler;
+	@Resource(name="bodyLocationSymptonHandler")
+	private BodyLocationSymptonHandler bodyLocationSymptonHandler;
 	
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
@@ -32,10 +34,10 @@ public class YesIntentHandler  extends AbstractIntentHandler {
 				return helpHandler.handle(input);
 			case "launch":
 				return genderIdentificationIntentHandler.handle(input);
-				//return bodyLocationHandler.handle(input);
 			case "BodyLocation":
 				return bodySpecificLocationIntentHandler.handle(input);
-				
+			case "BodySpecificLocation":
+				return bodyLocationSymptonHandler.handle(input);
 			default:
 				speechText = "Sorry, I do not understand how to process that.";
 			}

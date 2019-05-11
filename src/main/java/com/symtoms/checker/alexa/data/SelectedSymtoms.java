@@ -3,6 +3,7 @@ package com.symtoms.checker.alexa.data;
 import java.util.List;
 
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
+import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthSymptomSelector;
 
 public class SelectedSymtoms {
 	private String gender;
@@ -16,6 +17,9 @@ public class SelectedSymtoms {
 	private List<HealthItem> specificBodyLocationList;
 	private int specificBodyLocationCount;
 	
+	private HealthSymptomSelector selectedBodyLocationSymptom;
+	private List<HealthSymptomSelector> bodyLocationSymptomList;
+	private int selectedBodyLocationSymptomCount;
 	
 	
 	public String getGender() {
@@ -67,6 +71,26 @@ public class SelectedSymtoms {
 	public void setSpecificBodyLocationCount(int specificBodyLocationCount) {
 		this.specificBodyLocationCount = specificBodyLocationCount;
 	}
+	public HealthSymptomSelector getSelectedBodyLocationSymptom() {
+		return selectedBodyLocationSymptom;
+	}
+	public void setSelectedBodyLocationSymptom(HealthSymptomSelector selectedBodyLocationSymptom) {
+		this.selectedBodyLocationSymptom = selectedBodyLocationSymptom;
+	}
+	public List<HealthSymptomSelector> getBodyLocationSymptomList() {
+		return bodyLocationSymptomList;
+	}
+	public void setBodyLocationSymptomList(List<HealthSymptomSelector> bodyLocationSymptomList) {
+		this.bodyLocationSymptomList = bodyLocationSymptomList;
+	}
+	public int getSelectedBodyLocationSymptomCount() {
+		return selectedBodyLocationSymptomCount;
+	}
+	public void setSelectedBodyLocationSymptomCount(int selectedBodyLocationSymptomCount) {
+		this.selectedBodyLocationSymptomCount = selectedBodyLocationSymptomCount;
+	}
+	
+	
 	
 	
 	
