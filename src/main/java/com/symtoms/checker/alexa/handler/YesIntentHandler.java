@@ -1,6 +1,5 @@
 package com.symtoms.checker.alexa.handler;
 
-import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -16,7 +15,10 @@ public class YesIntentHandler  extends AbstractIntentHandler {
 	private HelpIntentHandler helpHandler;
 	@Resource(name="bodyLocationHandler")
 	private BodyLocationIntentHandler bodyLocationHandler;
-
+	@Resource(name="bodySpecificLocationIntentHandler")
+	private BodySpecificLocationIntentHandler bodySpecificLocationIntentHandler;
+	
+	
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
 		String speechText = "";
@@ -29,6 +31,9 @@ public class YesIntentHandler  extends AbstractIntentHandler {
 				return helpHandler.handle(input);
 			case "launch":
 				return bodyLocationHandler.handle(input);
+			case "BodyLocation":
+				return bodySpecificLocationIntentHandler.handle(input);
+				
 			default:
 				speechText = "Sorry, I do not understand how to process that.";
 			}

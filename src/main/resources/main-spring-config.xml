@@ -42,6 +42,13 @@
    		<property name="repromptName" value="bodyLocation" />
    		<property name="cardName" value="bodyLocation" />
 	</bean>
+	<bean id="bodySpecificLocationIntentHandler"
+		class="com.symtoms.checker.alexa.handler.BodySpecificLocationIntentHandler">
+		<property name="intentName" value="BodySpecificLocationIntent" />
+		<property name="speachName" value="bodySpecificLocation" />
+   		<property name="repromptName" value="bodySpecificLocation" />
+   		<property name="cardName" value="bodySpecificLocation" />
+	</bean>
 	<bean id="helpHandler"
 		class="com.symtoms.checker.alexa.handler.HelpIntentHandler">
 		<property name="intentName" value="AMAZON.HelpIntent" />

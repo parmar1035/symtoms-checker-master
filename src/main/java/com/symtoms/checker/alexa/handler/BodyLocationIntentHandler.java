@@ -40,7 +40,7 @@ public class BodyLocationIntentHandler extends AbstractIntentHandler {
 		} 
 		HealthItem bodyLocation = locationList.get(index);
 		addModel(input, "bodyLocName", bodyLocation.Name);
-		selectedSymtoms.setBodyLocation(bodyLocation);
+		selectedSymtoms.setSelectedBodyLocation(bodyLocation);
 		index = locationList.size() > (index + 1)?(index + 1):0;
 		selectedSymtoms.setBodyLocationCount(index);
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);

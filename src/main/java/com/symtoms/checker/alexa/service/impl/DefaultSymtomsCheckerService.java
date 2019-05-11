@@ -39,9 +39,26 @@ public class DefaultSymtomsCheckerService implements SymtomsCheckerService{
 				if (symtomsMap.containsKey("bodyLocationCount")) {
 					symtoms.setBodyLocationCount((int) symtomsMap.get("bodyLocationCount"));
 				}
-				if (symtomsMap.containsKey("bodyLocation")) {
-					symtoms.setBodyLocation(getHealthItem((Map) symtomsMap.get("bodyLocation")));
+				if (symtomsMap.containsKey("selectedBodyLocation")) {
+					symtoms.setSelectedBodyLocation(getHealthItem((Map) symtomsMap.get("selectedBodyLocation")));
 				}
+				
+				if (symtomsMap.containsKey("specificBodyLocationList")) {
+					List<Map> bodyLocationListMap = (List) symtomsMap.get("specificBodyLocationList");
+					List<HealthItem> bodyLocationList = new ArrayList<HealthItem>();
+					for(Map bodyLocation: bodyLocationListMap) {
+						bodyLocationList.add(getHealthItem(bodyLocation));
+					}
+					symtoms.setSpecificBodyLocationList(bodyLocationList);
+				}
+				if (symtomsMap.containsKey("specificBodyLocationCount")) {
+					symtoms.setSpecificBodyLocationCount((int) symtomsMap.get("specificBodyLocationCount"));
+				}
+				if (symtomsMap.containsKey("selectedSpecificBodyLocation")) {
+					symtoms.setSelectedSpecificBodyLocation(getHealthItem((Map) symtomsMap.get("selectedSpecificBodyLocation")));
+				}
+				
+				
 
 			}
 		}
