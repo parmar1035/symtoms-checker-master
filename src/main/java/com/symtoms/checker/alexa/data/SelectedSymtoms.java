@@ -5,6 +5,8 @@ import java.util.List;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 
 public class SelectedSymtoms {
+	private String gender;
+	private int yearofbirth;
 	
 	private List<HealthItem> bodyLocationList;
 	private HealthItem selectedBodyLocation;
@@ -14,6 +16,21 @@ public class SelectedSymtoms {
 	private List<HealthItem> specificBodyLocationList;
 	private int specificBodyLocationCount;
 	
+	
+	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	public int getYearofbirth() {
+		return yearofbirth;
+	}
+	public void setYearofbirth(int yearofbirth) {
+		this.yearofbirth = yearofbirth;
+	}
 	public HealthItem getSelectedBodyLocation() {
 		return selectedBodyLocation;
 	}
