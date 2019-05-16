@@ -1,0 +1,7 @@
+#if($issueNameList.size())
+	please re choose the symtoms
+#else
+	 #foreach( $issueName in $issueNameList )
+	    $issueName
+	 #end
+#end
