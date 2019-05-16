@@ -2,12 +2,19 @@ package com.symtoms.checker.alexa.data;
 
 import java.util.List;
 
+import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthDiagnosis;
+import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthIssueInfo;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthSymptomSelector;
 
+/**
+ * @author manoj.girachh
+ *
+ */
 public class SelectedSymtoms {
 	private String gender;
 	private int yearofbirth;
+	private int step;
 	
 	private List<HealthItem> bodyLocationList;
 	private HealthItem selectedBodyLocation;
@@ -20,7 +27,15 @@ public class SelectedSymtoms {
 	private HealthSymptomSelector selectedBodyLocationSymptom;
 	private List<HealthSymptomSelector> bodyLocationSymptomList;
 	private int selectedBodyLocationSymptomCount;
+	private List<HealthItem> proposedSystomList;
+	private List<Integer> selectedProposedSystomList;
+	private int specificProposedSystomCount;
 	
+	private List<HealthDiagnosis> healthDiagnosisList; 
+	private int selectedIssueId;
+	private int healthDiagnosisCount;
+	
+	private HealthIssueInfo healthIssueInfo;
 	
 	public String getGender() {
 		return gender;
@@ -90,11 +105,52 @@ public class SelectedSymtoms {
 		this.selectedBodyLocationSymptomCount = selectedBodyLocationSymptomCount;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	public List<HealthItem> getProposedSystomList() {
+		return proposedSystomList;
+	}
+	public void setProposedSystomList(List<HealthItem> proposedSystomList) {
+		this.proposedSystomList = proposedSystomList;
+	}
+	public List<Integer> getSelectedProposedSystomList() {
+		return selectedProposedSystomList;
+	}
+	public void setSelectedProposedSystomList(List<Integer> selectedProposedSystomList) {
+		this.selectedProposedSystomList = selectedProposedSystomList;
+	}
+	public int getSpecificProposedSystomCount() {
+		return specificProposedSystomCount;
+	}
+	public void setSpecificProposedSystomCount(int specificProposedSystomCount) {
+		this.specificProposedSystomCount = specificProposedSystomCount;
+	}
+	public List<HealthDiagnosis> getHealthDiagnosisList() {
+		return healthDiagnosisList;
+	}
+	public void setHealthDiagnosisList(List<HealthDiagnosis> healthDiagnosisList) {
+		this.healthDiagnosisList = healthDiagnosisList;
+	}
+	public int getStep() {
+		return step;
+	}
+	public void setStep(int step) {
+		this.step = step;
+	}
+	public int getSelectedIssueId() {
+		return selectedIssueId;
+	}
+	public void setSelectedIssueId(int selectedIssueId) {
+		this.selectedIssueId = selectedIssueId;
+	}
+	public int getHealthDiagnosisCount() {
+		return healthDiagnosisCount;
+	}
+	public void setHealthDiagnosisCount(int healthDiagnosisCount) {
+		this.healthDiagnosisCount = healthDiagnosisCount;
+	}
+	public HealthIssueInfo getHealthIssueInfo() {
+		return healthIssueInfo;
+	}
+	public void setHealthIssueInfo(HealthIssueInfo healthIssueInfo) {
+		this.healthIssueInfo = healthIssueInfo;
+	}
 }

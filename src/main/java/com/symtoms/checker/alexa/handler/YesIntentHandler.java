@@ -8,6 +8,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import com.symtoms.checker.alexa.handler.AbstractIntentHandler;
 import com.symtoms.checker.alexa.handler.HelpIntentHandler;
+import com.symtoms.checker.alexa.service.SymtomsCheckerService;
 
 public class YesIntentHandler  extends AbstractIntentHandler {
 
@@ -17,6 +18,13 @@ public class YesIntentHandler  extends AbstractIntentHandler {
 	private BodyLocationIntentHandler bodyLocationHandler;
 	@Resource(name="bodySpecificLocationIntentHandler")
 	private BodySpecificLocationIntentHandler bodySpecificLocationIntentHandler;
+	@Resource(name="proposedSymtomsIntentHandler")
+	private ProposedSymtomsIntentHandler proposedSymtomsIntentHandler;
+
+	
+	@Resource(name="symtomsCheckerService")
+	SymtomsCheckerService symtomsCheckerService; 
+
 	@Resource(name="genderIdentificationIntentHandler")
 	private GenderIdentificationIntentHandler genderIdentificationIntentHandler;
 	@Resource(name="bodyLocationSymptonHandler")
@@ -24,22 +32,27 @@ public class YesIntentHandler  extends AbstractIntentHandler {
 	
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
+		symtomsCheckerService.setYesNoIntent(Boolean.TRUE, input);
 		String speechText = "";
 		Object typeObject = getSessionAttributes(input,"type");
 		setSessionAttributes(input, "user_option", Boolean.TRUE);
 		if(null != typeObject && typeObject instanceof String) {
 			String type = (String) typeObject;
 			switch (type) {
-			case "help":
-				return helpHandler.handle(input);
-			case "launch":
-				return genderIdentificationIntentHandler.handle(input);
-			case "BodyLocation":
-				return bodySpecificLocationIntentHandler.handle(input);
-			case "BodySpecificLocation":
-				return bodyLocationSymptonHandler.handle(input);
-			default:
-				speechText = "Sorry, I do not understand how to process that.";
+				case "help":
+					return helpHandler.handle(input);
+				case "launch":
+					return genderIdentificationIntentHandler.handle(input);
+				case "BodyLocation":
+					return bodySpecificLocationIntentHandler.handle(input);
+				case "BodySpecificLocation":
+					return proposedSymtomsIntentHandler.handle(input);
+				case "BodyLocationSymptom":
+					return proposedSymtomsIntentHandler.handle(input);
+				case "ProposedSymtom":
+					return proposedSymtomsIntentHandler.handle(input);				
+				default:
+					speechText = "Sorry, I do not understand how to process that.";
 			}
 		}
 		else {
