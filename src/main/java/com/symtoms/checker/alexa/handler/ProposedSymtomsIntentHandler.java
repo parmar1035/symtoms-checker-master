@@ -42,7 +42,8 @@ public class ProposedSymtomsIntentHandler extends AbstractIntentHandler {
 		
 		int index = selectedSymtoms.getSpecificProposedSystomCount();
 
-		if(null != proposedSystomList && index >= proposedSystomList.size()) {
+		if(null != proposedSystomList && 
+				proposedSystomList.size() > 0  && index >= proposedSystomList.size()) {
 			return getDiagnosisIntentHandler.handle(input);
 		}
 
@@ -63,7 +64,7 @@ public class ProposedSymtomsIntentHandler extends AbstractIntentHandler {
 		if(CollectionUtils.isNullOrEmpty(proposedSystomList)) {
 			falg = false;
 			List<Integer> selectedSymptoms = new ArrayList<Integer>();
-			selectedSymptoms.add(33);
+			selectedSymptoms.add(selectedSymtoms.getSelectedSpecificBodyLocation().ID);
 			selectedSymtoms.setSelectedProposedSystomList(selectedSymptoms);
 			try {
 				proposedSystomList = diagnosisClient.loadProposedSymptoms(selectedSymptoms, Gender.Male, 1977);
