@@ -14,13 +14,12 @@ import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthSymptomSelector;
 public class SelectedSymtoms {
 	private String gender;
 	private int yearofbirth;
-	private int step;
-	
+		
 	private List<HealthItem> bodyLocationList;
 	private HealthItem selectedBodyLocation;
 	private int bodyLocationCount;
 	
-	private HealthItem selectedSpecificBodyLocation;
+	private HealthItem selectedBodyPartLocation;
 	private List<HealthItem> specificBodyLocationList;
 	private int specificBodyLocationCount;
 	
@@ -68,11 +67,11 @@ public class SelectedSymtoms {
 	public void setBodyLocationList(List<HealthItem> bodyLocationList) {
 		this.bodyLocationList = bodyLocationList;
 	}
-	public HealthItem getSelectedSpecificBodyLocation() {
-		return selectedSpecificBodyLocation;
+	public HealthItem getSelectedBodyPartLocation() {
+		return selectedBodyPartLocation;
 	}
-	public void setSelectedSpecificBodyLocation(HealthItem selectedSpecificBodyLocation) {
-		this.selectedSpecificBodyLocation = selectedSpecificBodyLocation;
+	public void setSelectedBodyPartLocation(HealthItem selectedBodyPartLocation) {
+		this.selectedBodyPartLocation = selectedBodyPartLocation;
 	}
 	public List<HealthItem> getSpecificBodyLocationList() {
 		return specificBodyLocationList;
@@ -128,12 +127,6 @@ public class SelectedSymtoms {
 	}
 	public void setHealthDiagnosisList(List<HealthDiagnosis> healthDiagnosisList) {
 		this.healthDiagnosisList = healthDiagnosisList;
-	}
-	public int getStep() {
-		return step;
-	}
-	public void setStep(int step) {
-		this.step = step;
 	}
 	public int getSelectedIssueId() {
 		return selectedIssueId;

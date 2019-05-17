@@ -3,6 +3,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/util
@@ -104,10 +105,16 @@
 	<bean id="yesIntentHandler"
 		class="com.symtoms.checker.alexa.handler.YesIntentHandler">
 		<property name="intentName" value="AMAZON.YesIntent" />
+		<property name="speachName" value="yesIntent" />
+		<property name="repromptName" value="yesIntent"/>
+   		<property name="cardName" value="yesIntent" />
 	</bean>
 	<bean id="noIntentHandler"
 		class="com.symtoms.checker.alexa.handler.NoIntentHandler">
 		<property name="intentName" value="AMAZON.NoIntent" />
+		<property name="speachName" value="noIntent" />
+		<property name="repromptName" value="noIntent"/>
+   		<property name="cardName" value="noIntent" />
 	</bean>
 	
 	<bean id="launchRequestHandler"
@@ -131,22 +138,29 @@
 				<ref bean="stopHandler" />
 				<ref bean="fallbackHandler" />
 				<ref bean="helpHandler" />
-				<ref bean="bodyLocationHandler" />
-				<ref bean="bodySpecificLocationIntentHandler" />
-				<ref bean="proposedSymtomsIntentHandler" />
-				<ref bean="getDiagnosisIntentHandler" />
 				<ref bean="launchRequestHandler" />
 				<ref bean="yesIntentHandler" />
 				<ref bean="noIntentHandler" />
 				<ref bean="sessionEndedHandler" />
-				<ref bean="genderIdentificationIntentHandler" />
 				<ref bean="genderCaptureIntentHandler" />
 				<ref bean="yearCaptureIntentHandler" />
-				<ref bean="bodySpecificLocationIntentHandler" />
-				<ref bean="bodyLocationSymptonHandler"/>
 			</list>
 		</property>
 	</bean>
+	<util:map id="handlerMapperYesIntent" map-class="java.util.HashMap">
+	    <entry key="HELP" value-ref="helpHandler"/>
+	    <entry key="ONE" value-ref="genderIdentificationIntentHandler"/>
+	    <entry key="TWO" value-ref="bodySpecificLocationIntentHandler"/>
+	    <entry key="THREE" value-ref="bodyLocationSymptonHandler"/>
+	    <entry key="FROUR" value-ref="proposedSymtomsIntentHandler"/>
+	    <entry key="FIVE" value-ref="proposedSymtomsIntentHandler"/>
+	</util:map>
+	<util:map id="handlerMapperNoIntent" map-class="java.util.HashMap">
+	    <entry key="TWO" value-ref="bodyLocationHandler"/>
+	    <entry key="THREE" value-ref="bodySpecificLocationIntentHandler"/>
+	    <entry key="FROUR" value-ref="bodyLocationSymptonHandler"/>
+	    <entry key="FIVE" value-ref="proposedSymtomsIntentHandler"/>
+	</util:map>
 
 	<bean id="diagnosisClient"
 		class="com.symtoms.checker.alexa.integration.client.impl.DefaultDiagnosisClient" />

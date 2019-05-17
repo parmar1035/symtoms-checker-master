@@ -9,6 +9,7 @@ import java.util.Set;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.symtoms.checker.alexa.data.SelectedSymtoms;
+import com.symtoms.checker.alexa.data.Steps;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 import com.symtoms.checker.alexa.service.SymtomsCheckerService;
 
@@ -53,4 +54,21 @@ public class DefaultSymtomsCheckerService implements SymtomsCheckerService{
 		}
 		return Boolean.FALSE;
 	}
+	
+	public void setStepIntoSession(final Steps step, final HandlerInput input) {
+		input.getAttributesManager()
+		 .getSessionAttributes()
+		 .put(STEP_SESSION_KEY, step);
+	}
+	
+	public String getStepFromSession(final HandlerInput input) {
+		String step="";
+		if (input.getAttributesManager().getSessionAttributes().containsKey(YES_NO_SESSION_KEY)) {
+			step = (String) input.getAttributesManager()
+			 			   		  .getSessionAttributes()
+			 			   		  .get(STEP_SESSION_KEY);
+		}
+		return step;
+	}
+
 }

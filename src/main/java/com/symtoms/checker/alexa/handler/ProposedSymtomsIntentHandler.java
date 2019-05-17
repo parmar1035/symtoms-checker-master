@@ -15,6 +15,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import com.amazonaws.util.CollectionUtils;
 import com.symtoms.checker.alexa.data.SelectedSymtoms;
+import com.symtoms.checker.alexa.data.Steps;
 import com.symtoms.checker.alexa.integration.client.DiagnosisClient;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.Gender;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
@@ -64,7 +65,7 @@ public class ProposedSymtomsIntentHandler extends AbstractIntentHandler {
 		if(CollectionUtils.isNullOrEmpty(proposedSystomList)) {
 			falg = false;
 			List<Integer> selectedSymptoms = new ArrayList<Integer>();
-			selectedSymptoms.add(selectedSymtoms.getSelectedSpecificBodyLocation().ID);
+			selectedSymptoms.add(selectedSymtoms.getSelectedBodyPartLocation().ID);
 			selectedSymtoms.setSelectedProposedSystomList(selectedSymptoms);
 			try {
 				proposedSystomList = diagnosisClient.loadProposedSymptoms(selectedSymptoms, Gender.Male, 1977);
@@ -85,7 +86,7 @@ public class ProposedSymtomsIntentHandler extends AbstractIntentHandler {
 		index++;
 		selectedSymtoms.setSpecificProposedSystomCount(index);
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
-		setSessionAttributes(input, "type", "ProposedSymtom");
+		symtomsCheckerService.setStepIntoSession(Steps.FIVE, input);
 	}
 	private void setSelectedBodyLocation(HandlerInput input, SelectedSymtoms selectedSymtoms, HealthItem systomName) {
 		if(symtomsCheckerService.isYesNoIntent(input)) {

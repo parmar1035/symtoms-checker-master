@@ -1,7 +1,15 @@
-#if($issueNameList.size())
+#if($issueNameList.size() == 0)
+	please re choose the symtoms
+#elseif($issueNameList.size() == 1)
+	You might suffering from following illness
 	 #foreach( $issueName in $issueNameList )
 	    $issueName
 	 #end
+	 Do you want to know more about?
 #else
-	please re choose the symtoms	 
+	You might suffering from following illness
+	 #foreach( $issueName in $issueNameList )
+	    $issueName or
+	 #end
+	 Do you want to know more about? Please choose the number
 #end

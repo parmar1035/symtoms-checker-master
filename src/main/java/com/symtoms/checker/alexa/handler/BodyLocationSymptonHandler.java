@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazonaws.util.CollectionUtils;
 import com.symtoms.checker.alexa.data.SelectedSymtoms;
+import com.symtoms.checker.alexa.data.Steps;
 import com.symtoms.checker.alexa.integration.client.DiagnosisClient;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthSymptomSelector;
@@ -31,7 +32,7 @@ public class BodyLocationSymptonHandler extends AbstractIntentHandler {
 		
 		LOG.error("inside BodyLocationSymptonHandler:");
 		SelectedSymtoms selectedSymtoms  = symtomsCheckerService.getSymtomsFromSession(input);
-		HealthItem selectedSpecificBodyLocation = selectedSymtoms.getSelectedSpecificBodyLocation();
+		HealthItem selectedSpecificBodyLocation = selectedSymtoms.getSelectedBodyPartLocation();
 		if(null == selectedSpecificBodyLocation) {
 			LOG.error("Customer has missed to add step 1 & 2 : selectedSpecificBodyLocation");
 			addModel(input, "error", "");
@@ -49,11 +50,11 @@ public class BodyLocationSymptonHandler extends AbstractIntentHandler {
 		
 		HealthSymptomSelector symptomLocation = healthSymptomSelectorList.get(index);
 		addModel(input, "bodySymptomName", symptomLocation.Name);
-		selectedSymtoms.setSelectedSpecificBodyLocation(symptomLocation);
+		selectedSymtoms.setSelectedBodyLocationSymptom(symptomLocation);
 		index = healthSymptomSelectorList.size() > (index + 1)?(index + 1):0;
 		selectedSymtoms.setSelectedBodyLocationSymptomCount(index);
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
-		setSessionAttributes(input, "type", "BodyLocationSymptom");
+		symtomsCheckerService.setStepIntoSession(Steps.FROUR, input);
 	}
 	
 	
