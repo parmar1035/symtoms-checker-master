@@ -1,12 +1,11 @@
 package com.symtoms.checker.alexa.data;
 
 import java.util.List;
-import java.util.Set;
 
-import com.symtoms.checker.alexa.priaid.diagnosis.model.DiagnosedIssue;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthDiagnosis;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthIssueInfo;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
+import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthSymptomSelector;
 
 /**
  * @author manoj.girachh
@@ -15,16 +14,18 @@ import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 public class SelectedSymtoms {
 	private String gender;
 	private int yearofbirth;
-	private int step;
-	
+		
 	private List<HealthItem> bodyLocationList;
 	private HealthItem selectedBodyLocation;
 	private int bodyLocationCount;
 	
-	private HealthItem selectedSpecificBodyLocation;
+	private HealthItem selectedBodyPartLocation;
 	private List<HealthItem> specificBodyLocationList;
 	private int specificBodyLocationCount;
 	
+	private HealthSymptomSelector selectedBodyLocationSymptom;
+	private List<HealthSymptomSelector> bodyLocationSymptomList;
+	private int selectedBodyLocationSymptomCount;
 	private List<HealthItem> proposedSystomList;
 	private List<Integer> selectedProposedSystomList;
 	private int specificProposedSystomCount;
@@ -66,11 +67,11 @@ public class SelectedSymtoms {
 	public void setBodyLocationList(List<HealthItem> bodyLocationList) {
 		this.bodyLocationList = bodyLocationList;
 	}
-	public HealthItem getSelectedSpecificBodyLocation() {
-		return selectedSpecificBodyLocation;
+	public HealthItem getSelectedBodyPartLocation() {
+		return selectedBodyPartLocation;
 	}
-	public void setSelectedSpecificBodyLocation(HealthItem selectedSpecificBodyLocation) {
-		this.selectedSpecificBodyLocation = selectedSpecificBodyLocation;
+	public void setSelectedBodyPartLocation(HealthItem selectedBodyPartLocation) {
+		this.selectedBodyPartLocation = selectedBodyPartLocation;
 	}
 	public List<HealthItem> getSpecificBodyLocationList() {
 		return specificBodyLocationList;
@@ -84,6 +85,25 @@ public class SelectedSymtoms {
 	public void setSpecificBodyLocationCount(int specificBodyLocationCount) {
 		this.specificBodyLocationCount = specificBodyLocationCount;
 	}
+	public HealthSymptomSelector getSelectedBodyLocationSymptom() {
+		return selectedBodyLocationSymptom;
+	}
+	public void setSelectedBodyLocationSymptom(HealthSymptomSelector selectedBodyLocationSymptom) {
+		this.selectedBodyLocationSymptom = selectedBodyLocationSymptom;
+	}
+	public List<HealthSymptomSelector> getBodyLocationSymptomList() {
+		return bodyLocationSymptomList;
+	}
+	public void setBodyLocationSymptomList(List<HealthSymptomSelector> bodyLocationSymptomList) {
+		this.bodyLocationSymptomList = bodyLocationSymptomList;
+	}
+	public int getSelectedBodyLocationSymptomCount() {
+		return selectedBodyLocationSymptomCount;
+	}
+	public void setSelectedBodyLocationSymptomCount(int selectedBodyLocationSymptomCount) {
+		this.selectedBodyLocationSymptomCount = selectedBodyLocationSymptomCount;
+	}
+	
 	public List<HealthItem> getProposedSystomList() {
 		return proposedSystomList;
 	}
@@ -107,12 +127,6 @@ public class SelectedSymtoms {
 	}
 	public void setHealthDiagnosisList(List<HealthDiagnosis> healthDiagnosisList) {
 		this.healthDiagnosisList = healthDiagnosisList;
-	}
-	public int getStep() {
-		return step;
-	}
-	public void setStep(int step) {
-		this.step = step;
 	}
 	public int getSelectedIssueId() {
 		return selectedIssueId;

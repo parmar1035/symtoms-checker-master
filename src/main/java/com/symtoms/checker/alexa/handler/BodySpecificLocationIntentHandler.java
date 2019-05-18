@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazonaws.util.CollectionUtils;
 import com.symtoms.checker.alexa.data.SelectedSymtoms;
+import com.symtoms.checker.alexa.data.Steps;
 import com.symtoms.checker.alexa.integration.client.DiagnosisClient;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 import com.symtoms.checker.alexa.service.SymtomsCheckerService;
@@ -47,10 +48,10 @@ public class BodySpecificLocationIntentHandler extends AbstractIntentHandler {
 		
 		HealthItem specificBodyLocation = locationList.get(index);
 		addModel(input, "bodyLocName", specificBodyLocation.Name);
-		selectedSymtoms.setSelectedSpecificBodyLocation(specificBodyLocation);
+		selectedSymtoms.setSelectedBodyPartLocation(specificBodyLocation);
 		index = locationList.size() > (index + 1)?(index + 1):0;
 		selectedSymtoms.setSpecificBodyLocationCount(index);
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
-		setSessionAttributes(input, "type", "BodySpecificLocation");
+		symtomsCheckerService.setStepIntoSession(Steps.THREE, input);
 	}
 }

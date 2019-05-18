@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazonaws.util.CollectionUtils;
 import com.symtoms.checker.alexa.data.SelectedSymtoms;
+import com.symtoms.checker.alexa.data.Steps;
 import com.symtoms.checker.alexa.integration.client.DiagnosisClient;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthSymptomSelector;
@@ -31,28 +32,31 @@ public class BodyLocationSymptonHandler extends AbstractIntentHandler {
 		
 		LOG.error("inside BodyLocationSymptonHandler:");
 		SelectedSymtoms selectedSymtoms  = symtomsCheckerService.getSymtomsFromSession(input);
-		HealthItem selectedSpecificBodyLocation = selectedSymtoms.getSelectedSpecificBodyLocation();
+		HealthItem selectedSpecificBodyLocation = selectedSymtoms.getSelectedBodyPartLocation();
 		if(null == selectedSpecificBodyLocation) {
 			LOG.error("Customer has missed to add step 1 & 2 : selectedSpecificBodyLocation");
 			addModel(input, "error", "");
 			return;
 		}
 		
-		List<HealthItem> locationList = selectedSymtoms.getSpecificBodyLocationList();
+		List<HealthSymptomSelector> healthSymptomSelectorList = selectedSymtoms.getBodyLocationSymptomList();
 		
-		int index = selectedSymtoms.getSpecificBodyLocationCount();
+		int index = selectedSymtoms.getSelectedBodyLocationSymptomCount();
 		
-		if(CollectionUtils.isNullOrEmpty(locationList)) {
-			List<HealthSymptomSelector> healthSymptomSelectors = diagnosisClient.loadSublocationSymptoms(selectedSpecificBodyLocation.ID, SelectorStatus.valueOf(selectedSymtoms.getGender()));
-			selectedSymtoms.setSpecificBodyLocationList(locationList);
+		if(CollectionUtils.isNullOrEmpty(healthSymptomSelectorList)) {
+			healthSymptomSelectorList = diagnosisClient.loadSublocationSymptoms(selectedSpecificBodyLocation.ID, findSelectorStatus(selectedSymtoms.getGender()));
+			selectedSymtoms.setBodyLocationSymptomList(healthSymptomSelectorList);
 		}
 		
-		HealthItem specificBodyLocation = locationList.get(index);
-		addModel(input, "bodyLocName", specificBodyLocation.Name);
-		selectedSymtoms.setSelectedSpecificBodyLocation(specificBodyLocation);
-		index = locationList.size() > (index + 1)?(index + 1):0;
-		selectedSymtoms.setSpecificBodyLocationCount(index);
+		HealthSymptomSelector symptomLocation = healthSymptomSelectorList.get(index);
+		addModel(input, "bodySymptomName", symptomLocation.Name);
+		selectedSymtoms.setSelectedBodyLocationSymptom(symptomLocation);
+		index = healthSymptomSelectorList.size() > (index + 1)?(index + 1):0;
+		selectedSymtoms.setSelectedBodyLocationSymptomCount(index);
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
-		setSessionAttributes(input, "type", "BodySpecificLocation");
+		symtomsCheckerService.setStepIntoSession(Steps.FROUR, input);
 	}
+	
+	
+	
 }

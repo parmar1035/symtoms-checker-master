@@ -27,6 +27,7 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.response.ResponseBuilder;
+import com.symtoms.checker.alexa.priaid.diagnosis.model.SelectorStatus;
 
 public abstract class AbstractIntentHandler implements RequestHandler {
 
@@ -111,13 +112,8 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 			Set<String> keys = reqAttributes.keySet();	
 			for(String key : keys) {
 				context.put(key, reqAttributes.get(key));
-				System.out.println(key + " : "+reqAttributes.get(key));
 			}
-		}else {
-			System.out.println("reqAttributes are empty");
 		}
-		
-		
 	}
 	protected String getSpeechText(HandlerInput input) {
 		if(null == speachName)
@@ -252,6 +248,27 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 			}
 		}
 		return value;
+	}
+	
+	protected SelectorStatus findSelectorStatus(final String code) {
+		if(StringUtils.isEmpty(code)) {
+			return null;
+		}
+		
+		switch (code.toLowerCase()) {
+		case "man":
+			return SelectorStatus.Man;
+		case "woman":
+			return SelectorStatus.Woman;
+		case "boy":
+			return SelectorStatus.Boy;
+		case "girl":
+			return SelectorStatus.Girl;
+		default:
+			return null;
+		}
+		
+		
 	}
 
 }
