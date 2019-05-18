@@ -94,7 +94,13 @@
    		<property name="repromptName" value="getDiagnosis" />
    		<property name="cardName" value="getDiagnosis" />
 	</bean>
-
+	<bean id="getDiagnosisDetailsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.GetDiagnosisDetailsIntentHandler">
+		<property name="intentName" value="GetDiagnosisDetailsIntent" />
+		<property name="speachName" value="getDiagnosisDetails" />
+   		<property name="repromptName" value="getDiagnosisDetails" />
+   		<property name="cardName" value="getDiagnosisDetails" />
+	</bean>
 	<bean id="helpHandler"
 		class="com.symtoms.checker.alexa.handler.HelpIntentHandler">
 		<property name="intentName" value="AMAZON.HelpIntent" />
@@ -154,6 +160,7 @@
 	    <entry key="THREE" value-ref="bodyLocationSymptonHandler"/>
 	    <entry key="FROUR" value-ref="proposedSymtomsIntentHandler"/>
 	    <entry key="FIVE" value-ref="proposedSymtomsIntentHandler"/>
+	    <entry key="SIX" value-ref="getDiagnosisDetailsIntentHandler"/>
 	</util:map>
 	<util:map id="handlerMapperNoIntent" map-class="java.util.HashMap">
 	    <entry key="TWO" value-ref="bodyLocationHandler"/>

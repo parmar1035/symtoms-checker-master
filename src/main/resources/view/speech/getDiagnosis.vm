@@ -1,15 +1,19 @@
+<speak>
 #if($issueNameList.size() == 0)
-	please re choose the symtoms
+	please re choose the symtoms.
 #elseif($issueNameList.size() == 1)
 	You might suffering from following illness
 	 #foreach( $issueName in $issueNameList )
-	    $issueName
+	    $issueName.
 	 #end
+	 <break time="10s"/>
 	 Do you want to know more about?
 #else
 	You might suffering from following illness
 	 #foreach( $issueName in $issueNameList )
-	    $issueName or
+	    $issueName.
 	 #end
-	 Do you want to know more about? Please choose the number
+	 <break time="10s"/>
+	 Do you want to know more about? Please choose the number.
 #end
+</speak>

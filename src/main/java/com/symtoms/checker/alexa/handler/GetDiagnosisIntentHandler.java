@@ -16,6 +16,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import com.amazonaws.util.CollectionUtils;
 import com.symtoms.checker.alexa.data.SelectedSymtoms;
+import com.symtoms.checker.alexa.data.Steps;
 import com.symtoms.checker.alexa.integration.client.DiagnosisClient;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.Gender;
 import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthDiagnosis;
@@ -58,7 +59,7 @@ public class GetDiagnosisIntentHandler extends AbstractIntentHandler {
 		addModel(input, "issueNameList", getIssueNameList(healthDiagnosisList));
 		LOG.error("healthDiagnosisList : " + healthDiagnosisList);
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
-		setSessionAttributes(input, "type", "GetDiagnosis");
+		symtomsCheckerService.setStepIntoSession(Steps.SIX, input);
 	}
 	private Gender findGender(final String code) {
 		if(StringUtils.isEmpty(code)) {

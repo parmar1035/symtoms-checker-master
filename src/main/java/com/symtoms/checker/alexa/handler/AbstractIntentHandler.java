@@ -112,13 +112,8 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 			Set<String> keys = reqAttributes.keySet();	
 			for(String key : keys) {
 				context.put(key, reqAttributes.get(key));
-				System.out.println(key + " : "+reqAttributes.get(key));
 			}
-		}else {
-			System.out.println("reqAttributes are empty");
 		}
-		
-		
 	}
 	protected String getSpeechText(HandlerInput input) {
 		if(null == speachName)
