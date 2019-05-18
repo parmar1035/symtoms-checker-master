@@ -134,6 +134,13 @@
 		class="com.symtoms.checker.alexa.handler.SessionEndedRequestHandler">
 		<property name="intentName" value="SessionEndedRequest" />
 	</bean>
+	<bean id="diagnosisDetailsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.DiagnosisDetailsIntentHandler">
+		<property name="intentName" value="DiagnosisDetailsIntent" />
+		<property name="speachName" value="diagnosisDetailsinfo" />
+   		<property name="repromptName" value="diagnosisDetailsinfo" />
+   		<property name="cardName" value="diagnosisDetailsinfo" />
+	</bean>
 	<bean id="medicalConditionsIntentHandler"
 		class="com.symtoms.checker.alexa.handler.MedicalConditionsIntentHandler">
 		<property name="intentName" value="MedicalConditionsIntent" />
