@@ -14,6 +14,6 @@
 	    $issueName.
 	 #end
 	 <break time="10s"/>
-	 Do you want to know more about? Please choose the number.
+	 Do you want to know more about? You can say like show first, show second diagnosis.
 #end
 </speak>

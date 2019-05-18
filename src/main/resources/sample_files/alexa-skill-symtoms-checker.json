@@ -32,18 +32,6 @@
                     "samples": []
                 },
                 {
-                    "name": "BodyLocationIntent",
-                    "slots": [],
-                    "samples": [
-                        "Test"
-                    ]
-                },
-                {
-                    "name": "BodySpecificLocationIntent",
-                    "slots": [],
-                    "samples": []
-                },
-                {
                     "name": "GenderIdentificationIntent",
                     "slots": [],
                     "samples": []
@@ -71,6 +59,19 @@
                     "samples": [
                         "{yearofbirth} is my year of birth",
                         "My year of birth is {yearofbirth}"
+                    ]
+                },
+                {
+                    "name": "GetDiagnosisDetailsIntent",
+                    "slots": [
+                        {
+                            "name": "position",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "show {position} ",
+                        "show  {position} diagnosis"
                     ]
                 }
             ],
