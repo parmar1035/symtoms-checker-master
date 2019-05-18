@@ -46,13 +46,13 @@ public class GetDiagnosisDetailsIntentHandler extends AbstractIntentHandler {
 			 }
 			selectedSymtoms.setHealthIssueInfo(healthIssueInfo);
 		} 
-		
+
 		String healthDetails = healthIssueInfo.Description;
 		healthDetails = healthDetails.replaceAll("[^ .,a-zA-Z0-9]", StringUtils.EMPTY);
 		addModel(input, "issueDetails", healthDetails);
-		LOG.error("issueDetails : " + healthDetails);
+		LOG.error("issueDetails : {}" + healthDetails);
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
-		symtomsCheckerService.setStepIntoSession(Steps.SIX, input);
+		symtomsCheckerService.setStepIntoSession(Steps.SEVEN, input);
 	}
 	int getNumberFromString(String position) {
 		if(StringUtils.isEmpty(position))

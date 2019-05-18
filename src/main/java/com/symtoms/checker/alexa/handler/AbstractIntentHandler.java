@@ -36,7 +36,7 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 	private String repromptName;
 	private String cardName;
 
-	private Logger LOG = LoggerFactory.getLogger(LaunchRequestHandler.class);
+	private Logger LOG = LoggerFactory.getLogger(AbstractIntentHandler.class);
 	
 	private static final String speachPath = "/view/speech";
 	private static final String rePromptPath = "/view/reprompt";
@@ -48,9 +48,10 @@ public abstract class AbstractIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
     	handleInternal(input);
-    	PolicyFactory policyFactory = new HtmlPolicyBuilder().toFactory();
+    	PolicyFactory policyFactory = new HtmlPolicyBuilder()
+    									.toFactory();
     	String speechText=policyFactory.sanitize(getSpeechText(input));
-    	LOG.error("speechText" + speechText);
+    	LOG.error("speechText: {}", speechText);
     	String repromptText = policyFactory.sanitize(getRepromptText(input));
     	String cardText = policyFactory.sanitize(getCardText(input));
     	ResponseBuilder responseBuilder = input.getResponseBuilder();
@@ -265,8 +266,11 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 		}
 		
 		switch (code.toLowerCase()) {
+		case "male":
 		case "man":
 			return SelectorStatus.Man;
+		case "women":
+		case "female":
 		case "woman":
 			return SelectorStatus.Woman;
 		case "boy":
@@ -274,7 +278,7 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 		case "girl":
 			return SelectorStatus.Girl;
 		default:
-			return null;
+			return SelectorStatus.Man;
 		}
 		
 		

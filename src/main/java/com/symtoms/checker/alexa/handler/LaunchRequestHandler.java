@@ -33,6 +33,7 @@ public class LaunchRequestHandler extends AbstractIntentHandler {
 
 	@Override
 	protected void handleInternal(HandlerInput input) {
+		symtomsCheckerService.clearSymtomSession(input);
 		symtomsCheckerService.setStepIntoSession(Steps.ONE, input);
 		LOG.error("Inside Launch Handler");
 	}

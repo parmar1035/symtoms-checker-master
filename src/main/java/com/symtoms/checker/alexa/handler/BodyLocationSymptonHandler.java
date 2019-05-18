@@ -47,14 +47,13 @@ public class BodyLocationSymptonHandler extends AbstractIntentHandler {
 			healthSymptomSelectorList = diagnosisClient.loadSublocationSymptoms(selectedSpecificBodyLocation.ID, findSelectorStatus(selectedSymtoms.getGender()));
 			selectedSymtoms.setBodyLocationSymptomList(healthSymptomSelectorList);
 		}
-		
 		HealthSymptomSelector symptomLocation = healthSymptomSelectorList.get(index);
 		addModel(input, "bodySymptomName", symptomLocation.Name);
 		selectedSymtoms.setSelectedBodyLocationSymptom(symptomLocation);
 		index = healthSymptomSelectorList.size() > (index + 1)?(index + 1):0;
 		selectedSymtoms.setSelectedBodyLocationSymptomCount(index);
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
-		symtomsCheckerService.setStepIntoSession(Steps.FROUR, input);
+		symtomsCheckerService.setStepIntoSession(Steps.FOUR, input);
 	}
 	
 	

@@ -1,1 +1,7 @@
-$issueDetails
+#if( $issueDetails != $null )
+	$issueDetails
+	Do you want to know the Medical Conditions?
+		
+#else
+	Our analysis says that you are fit and fine. 	
+#end
