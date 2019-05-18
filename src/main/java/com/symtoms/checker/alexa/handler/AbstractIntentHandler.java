@@ -27,6 +27,7 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.response.ResponseBuilder;
+import com.symtoms.checker.alexa.priaid.diagnosis.model.SelectorStatus;
 
 public abstract class AbstractIntentHandler implements RequestHandler {
 
@@ -35,7 +36,7 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 	private String repromptName;
 	private String cardName;
 
-	private Logger LOG = LoggerFactory.getLogger(LaunchRequestHandler.class);
+	private Logger LOG = LoggerFactory.getLogger(AbstractIntentHandler.class);
 	
 	private static final String speachPath = "/view/speech";
 	private static final String rePromptPath = "/view/reprompt";
@@ -47,8 +48,10 @@ public abstract class AbstractIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
     	handleInternal(input);
-    	PolicyFactory policyFactory = new HtmlPolicyBuilder().toFactory();
+    	PolicyFactory policyFactory = new HtmlPolicyBuilder()
+    									.toFactory();
     	String speechText=policyFactory.sanitize(getSpeechText(input));
+    	LOG.error("speechText: {}", speechText);
     	String repromptText = policyFactory.sanitize(getRepromptText(input));
     	String cardText = policyFactory.sanitize(getCardText(input));
     	ResponseBuilder responseBuilder = input.getResponseBuilder();
@@ -90,6 +93,14 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 		}
 		return slotValues;
 	}
+	protected String getSlotValue(HandlerInput input, String slotKey) {
+		Map<String, String> slots = getSlots(input);
+		if(null != slots && slots.containsKey(slotKey)) {
+			return slots.get(slotKey);
+		}
+		return null;
+	}
+	
 	protected String getAccessToken(HandlerInput input, boolean isAccessTokenRequired) {
 		if(isAccessTokenRequired) {
 			return input
@@ -111,13 +122,8 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 			Set<String> keys = reqAttributes.keySet();	
 			for(String key : keys) {
 				context.put(key, reqAttributes.get(key));
-				System.out.println(key + " : "+reqAttributes.get(key));
 			}
-		}else {
-			System.out.println("reqAttributes are empty");
 		}
-		
-		
 	}
 	protected String getSpeechText(HandlerInput input) {
 		if(null == speachName)
@@ -240,8 +246,41 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 				sessionAttributes = new HashMap<>();
 			}
 			sessionAttributes.put(key, value);
-			//input.getAttributesManager().setSessionAttributes(sessionMap);
 		}
+		
+	}
+	protected Object getSessionAttributes(HandlerInput input, String key) {
+		Object value = null;
+		if(null != key ) {
+			Map<String, Object> sessionAttributes = input.getAttributesManager().getSessionAttributes();
+			if(null != sessionAttributes) {
+				value = sessionAttributes.get(key);
+			}
+		}
+		return value;
+	}
+	
+	protected SelectorStatus findSelectorStatus(final String code) {
+		if(StringUtils.isEmpty(code)) {
+			return null;
+		}
+		
+		switch (code.toLowerCase()) {
+		case "male":
+		case "man":
+			return SelectorStatus.Man;
+		case "women":
+		case "female":
+		case "woman":
+			return SelectorStatus.Woman;
+		case "boy":
+			return SelectorStatus.Boy;
+		case "girl":
+			return SelectorStatus.Girl;
+		default:
+			return SelectorStatus.Man;
+		}
+		
 		
 	}
 

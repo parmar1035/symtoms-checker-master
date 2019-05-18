@@ -1,8 +1,12 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "Symtoms Checker",
+            "invocationName": "health buddy",
             "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
                 {
                     "name": "AMAZON.CancelIntent",
                     "samples": []
@@ -16,26 +20,59 @@
                     "samples": []
                 },
                 {
-                    "name": "WelcomeSymtomsCheckerIntent",
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "GenderIdentificationIntent",
                     "slots": [],
+                    "samples": []
+                },
+                {
+                    "name": "GenderCaptureIntent",
+                    "slots": [
+                        {
+                            "name": "gender",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
                     "samples": [
-                        "welcome symtoms checker",
-                        "say hello",
-                        "say hello symtoms checker",
-                        "hello",
-                        "say hi",
-                        "say hi symtoms checker",
-                        "hi",
-                        "how are you"
+                        "i am {gender}"
                     ]
                 },
                 {
-                    "name": "AMAZON.FallbackIntent",
-                    "samples": []
+                    "name": "YearCaptureIntent",
+                    "slots": [
+                        {
+                            "name": "yearofbirth",
+                            "type": "AMAZON.FOUR_DIGIT_NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{yearofbirth} is my year of birth",
+                        "My year of birth is {yearofbirth}"
+                    ]
                 },
                 {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
+                    "name": "GetDiagnosisDetailsIntent",
+                    "slots": [
+                        {
+                            "name": "position",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "show {position} ",
+                        "show  {position} diagnosis"
+                    ]
                 }
             ],
             "types": []

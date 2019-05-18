@@ -1,0 +1,19 @@
+<speak>
+#if($issueNameList.size() == 0)
+	please re choose the symtoms.
+#elseif($issueNameList.size() == 1)
+	You might be suffering from following illness
+	 #foreach( $issueName in $issueNameList )
+	    $issueName.
+	 #end
+	 <break time="5s"/>
+	 Do you want to know more about?
+#else
+	You might be suffering from following illness
+	 #foreach( $issueName in $issueNameList )
+	    $issueName,
+	 #end
+	 <break time="5s"/>
+	 Do you want to know more about? You can say like show first, show second diagnosis.
+#end
+</speak>

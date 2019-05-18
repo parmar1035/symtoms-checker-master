@@ -3,6 +3,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/util
@@ -35,11 +36,69 @@
 		class="com.symtoms.checker.alexa.handler.FallbackIntentHandler">
 		<property name="intentName" value="AMAZON.FallbackIntent" />
 	</bean>
-	<bean id="welcomeSymtomsCheckerHandler"
-		class="com.symtoms.checker.alexa.handler.WelcomeSymtomsCheckerIntentHandler">
-		<property name="intentName" value="WelcomeSymtomsCheckerIntent" />
-		<property name="speachName" value="welcomeSymtomsChecker" />
-   		<property name="cardName" value="welcomeSymtomsChecker" />
+	<bean id="genderIdentificationIntentHandler"
+		class="com.symtoms.checker.alexa.handler.GenderIdentificationIntentHandler">
+		<property name="intentName" value="GenderIdentificationIntent" />
+		<property name="speachName" value="genderidentification" />
+   		<property name="repromptName" value="genderidentification" />
+   		<property name="cardName" value="genderidentification" />
+	</bean>
+	<bean id="genderCaptureIntentHandler"
+		class="com.symtoms.checker.alexa.handler.GenderCaptureIntentHandler">
+		<property name="intentName" value="GenderCaptureIntent" />
+		<property name="speachName" value="gendercapture" />
+   		<property name="repromptName" value="gendercapture" />
+   		<property name="cardName" value="gendercapture" />
+	</bean>
+	
+	<bean id="yearCaptureIntentHandler"
+		class="com.symtoms.checker.alexa.handler.YearCaptureIntentHandler">
+		<property name="intentName" value="YearCaptureIntent" />
+		<property name="speachName" value="yearcapture" />
+   		<property name="repromptName" value="yearcapture" />
+   		<property name="cardName" value="yearcapture" />
+	</bean>
+	
+	<bean id="bodyLocationHandler"
+		class="com.symtoms.checker.alexa.handler.BodyLocationIntentHandler">
+		<property name="intentName" value="BodyLocationIntent" />
+		<property name="speachName" value="bodyLocation" />
+   		<property name="repromptName" value="bodyLocation" />
+   		<property name="cardName" value="bodyLocation" />
+	</bean>
+	<bean id="bodySpecificLocationIntentHandler"
+		class="com.symtoms.checker.alexa.handler.BodySpecificLocationIntentHandler">
+		<property name="intentName" value="BodySpecificLocationIntent" />
+		<property name="speachName" value="bodySpecificLocation" />
+   		<property name="repromptName" value="bodySpecificLocation" />
+   		<property name="cardName" value="bodySpecificLocation" />
+	</bean>
+	<bean id="bodyLocationSymptonHandler"
+		class="com.symtoms.checker.alexa.handler.BodyLocationSymptonHandler">
+		<property name="intentName" value="BodyLocationSymptonIntent" />
+		<property name="speachName" value="bodyLocationSymptom" />
+   		<property name="repromptName" value="bodyLocationSymptom" />
+   		<property name="cardName" value="bodyLocationSymptom" />
+	</bean>
+	<bean id="proposedSymtomsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.ProposedSymtomsIntentHandler">
+		<property name="intentName" value="ProposedSymtomsIntent" />
+		<property name="speachName" value="proposedSymtoms" />
+   		<property name="repromptName" value="proposedSymtoms" />
+   		<property name="cardName" value="proposedSymtoms" />
+	</bean>
+	<bean id="getDiagnosisIntentHandler"
+		class="com.symtoms.checker.alexa.handler.GetDiagnosisIntentHandler">
+		<property name="intentName" value="GetDiagnosisIntent" />
+		<property name="speachName" value="getDiagnosis" />
+   		<property name="repromptName" value="getDiagnosis" />
+   		<property name="cardName" value="getDiagnosis" />
+	</bean>
+	<bean id="getDiagnosisDetailsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.GetDiagnosisDetailsIntentHandler">
+		<property name="intentName" value="GetDiagnosisDetailsIntent" />
+		<property name="speachName" value="getDiagnosisDetails" />
+		<property name="cardName" value="getDiagnosisDetails" />
 	</bean>
 	<bean id="helpHandler"
 		class="com.symtoms.checker.alexa.handler.HelpIntentHandler">
@@ -47,6 +106,20 @@
 		<property name="speachName" value="helpSymtomsChecker" />
 		<property name="repromptName" value="helpSymtomsChecker"/>
    		<property name="cardName" value="helpSymtomsChecker" />
+	</bean>
+	<bean id="yesIntentHandler"
+		class="com.symtoms.checker.alexa.handler.YesIntentHandler">
+		<property name="intentName" value="AMAZON.YesIntent" />
+		<property name="speachName" value="yesIntent" />
+		<property name="repromptName" value="yesIntent"/>
+   		<property name="cardName" value="yesIntent" />
+	</bean>
+	<bean id="noIntentHandler"
+		class="com.symtoms.checker.alexa.handler.NoIntentHandler">
+		<property name="intentName" value="AMAZON.NoIntent" />
+		<property name="speachName" value="noIntent" />
+		<property name="repromptName" value="noIntent"/>
+   		<property name="cardName" value="noIntent" />
 	</bean>
 	
 	<bean id="launchRequestHandler"
@@ -61,6 +134,36 @@
 		class="com.symtoms.checker.alexa.handler.SessionEndedRequestHandler">
 		<property name="intentName" value="SessionEndedRequest" />
 	</bean>
+	<bean id="diagnosisDetailsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.DiagnosisDetailsIntentHandler">
+		<property name="intentName" value="DiagnosisDetailsIntent" />
+		<property name="speachName" value="diagnosisDetailsinfo" />
+   		<property name="repromptName" value="diagnosisDetailsinfo" />
+   		<property name="cardName" value="diagnosisDetailsinfo" />
+	</bean>
+	<bean id="medicalConditionsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.MedicalConditionsIntentHandler">
+		<property name="intentName" value="MedicalConditionsIntent" />
+		<property name="speachName" value="medicalConditioninfo" />
+   		<property name="repromptName" value="medicalConditioninfo" />
+   		<property name="cardName" value="medicalConditioninfo" />
+	</bean>
+	<bean id="treatmentsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.TreatmentsIntentHandler">
+		<property name="intentName" value="TreatmentsIntent" />
+		<property name="speachName" value="treatmentsinfo" />
+   		<property name="repromptName" value="treatmentsinfo" />
+   		<property name="cardName" value="treatmentsinfo" />
+	</bean>
+	
+	<bean id="completedIntentHandler"
+		class="com.symtoms.checker.alexa.handler.CompletedIntentHandler">
+		<property name="intentName" value="completedIntent" />
+		<property name="speachName" value="completedinfo" />
+   		<property name="cardName" value="completedinfo" />
+	</bean>
+	
+	
 	<bean id="handlerDetails"
 		class="com.symtoms.checker.alexa.data.HandlerDetails">
 		<property name="handlerList">
@@ -70,15 +173,45 @@
 				<ref bean="stopHandler" />
 				<ref bean="fallbackHandler" />
 				<ref bean="helpHandler" />
-				<ref bean="welcomeSymtomsCheckerHandler" />
 				<ref bean="launchRequestHandler" />
+				<ref bean="yesIntentHandler" />
+				<ref bean="noIntentHandler" />
 				<ref bean="sessionEndedHandler" />
+				<ref bean="genderCaptureIntentHandler" />
+				<ref bean="yearCaptureIntentHandler" />
+				<ref bean="getDiagnosisDetailsIntentHandler" />
 			</list>
 		</property>
 	</bean>
+	<util:map id="handlerMapperYesIntent" map-class="java.util.HashMap">
+	    <entry key="HELP" value-ref="helpHandler"/>
+	    <entry key="ONE" value-ref="genderIdentificationIntentHandler"/>
+	    <entry key="TWO" value-ref="bodySpecificLocationIntentHandler"/>
+	    <entry key="THREE" value-ref="bodyLocationSymptonHandler"/>
+	    <entry key="FOUR" value-ref="proposedSymtomsIntentHandler"/>
+	    <entry key="FIVE" value-ref="proposedSymtomsIntentHandler"/>
+	    <entry key="SIX" value-ref="getDiagnosisDetailsIntentHandler"/>
+	    <entry key="SEVEN" value-ref="medicalConditionsIntentHandler"/>
+	    <entry key="EIGHT" value-ref="treatmentsIntentHandler"/>
+	    <entry key="COMPLETED" value-ref="genderIdentificationIntentHandler"/>
+	</util:map>
+	<util:map id="handlerMapperNoIntent" map-class="java.util.HashMap">
+	    <entry key="TWO" value-ref="bodyLocationHandler"/>
+	    <entry key="THREE" value-ref="bodySpecificLocationIntentHandler"/>
+	    <entry key="FOUR" value-ref="bodyLocationSymptonHandler"/>
+	    <entry key="FIVE" value-ref="proposedSymtomsIntentHandler"/>
+	    <entry key="SIX" value-ref="completedIntentHandler"/>
+	    <entry key="SEVEN" value-ref="completedIntentHandler"/>
+	    <entry key="EIGHT" value-ref="completedIntentHandler"/>
+	    <entry key="COMPLETED" value-ref="completedIntentHandler"/>
+	</util:map>
 
-	<!-- Importing separate Spring Rest Template configurations -->
-	<!-- Importing separate Spring Integration configurations -->
-	<import resource="classpath:resources/integration/symtoms-checker-common-integration.xml"/>	
-	
+	<bean id="diagnosisClient"
+		class="com.symtoms.checker.alexa.integration.client.impl.DefaultDiagnosisClient" />
+	<bean id="symtomsCheckerService"
+		class="com.symtoms.checker.alexa.service.impl.DefaultSymtomsCheckerService" />
+			
+	<bean id="symtomsRestTemplate" class="org.springframework.web.client.RestTemplate" />
+	<bean id="symtomsConnectivityClient" class="com.symtoms.checker.alexa.integration.client.impl.DefaultSymtomsConnectivityClient" />
+		
 </beans>

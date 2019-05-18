@@ -24,3 +24,4 @@ hs_err_pid*
 .settings/com.amazonaws.eclipse.lambda.project.json
 target/classes/META-INF/
 target/classes/
+!sun.misc.BASE64Decoder.jar
