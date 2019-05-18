@@ -150,6 +150,7 @@
 				<ref bean="sessionEndedHandler" />
 				<ref bean="genderCaptureIntentHandler" />
 				<ref bean="yearCaptureIntentHandler" />
+				<ref bean="getDiagnosisDetailsIntentHandler" />
 			</list>
 		</property>
 	</bean>

@@ -50,6 +50,7 @@ public abstract class AbstractIntentHandler implements RequestHandler {
     	handleInternal(input);
     	PolicyFactory policyFactory = new HtmlPolicyBuilder().toFactory();
     	String speechText=policyFactory.sanitize(getSpeechText(input));
+    	LOG.error("speechText" + speechText);
     	String repromptText = policyFactory.sanitize(getRepromptText(input));
     	String cardText = policyFactory.sanitize(getCardText(input));
     	ResponseBuilder responseBuilder = input.getResponseBuilder();
@@ -91,6 +92,14 @@ public abstract class AbstractIntentHandler implements RequestHandler {
 		}
 		return slotValues;
 	}
+	protected String getSlotValue(HandlerInput input, String slotKey) {
+		Map<String, String> slots = getSlots(input);
+		if(null != slots && slots.containsKey(slotKey)) {
+			return slots.get(slotKey);
+		}
+		return null;
+	}
+	
 	protected String getAccessToken(HandlerInput input, boolean isAccessTokenRequired) {
 		if(isAccessTokenRequired) {
 			return input
