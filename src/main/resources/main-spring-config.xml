@@ -98,8 +98,7 @@
 		class="com.symtoms.checker.alexa.handler.GetDiagnosisDetailsIntentHandler">
 		<property name="intentName" value="GetDiagnosisDetailsIntent" />
 		<property name="speachName" value="getDiagnosisDetails" />
-   		<property name="repromptName" value="getDiagnosisDetails" />
-   		<property name="cardName" value="getDiagnosisDetails" />
+		<property name="cardName" value="getDiagnosisDetails" />
 	</bean>
 	<bean id="helpHandler"
 		class="com.symtoms.checker.alexa.handler.HelpIntentHandler">
@@ -135,6 +134,36 @@
 		class="com.symtoms.checker.alexa.handler.SessionEndedRequestHandler">
 		<property name="intentName" value="SessionEndedRequest" />
 	</bean>
+	<bean id="diagnosisDetailsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.DiagnosisDetailsIntentHandler">
+		<property name="intentName" value="DiagnosisDetailsIntent" />
+		<property name="speachName" value="diagnosisDetailsinfo" />
+   		<property name="repromptName" value="diagnosisDetailsinfo" />
+   		<property name="cardName" value="diagnosisDetailsinfo" />
+	</bean>
+	<bean id="medicalConditionsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.MedicalConditionsIntentHandler">
+		<property name="intentName" value="MedicalConditionsIntent" />
+		<property name="speachName" value="medicalConditioninfo" />
+   		<property name="repromptName" value="medicalConditioninfo" />
+   		<property name="cardName" value="medicalConditioninfo" />
+	</bean>
+	<bean id="treatmentsIntentHandler"
+		class="com.symtoms.checker.alexa.handler.TreatmentsIntentHandler">
+		<property name="intentName" value="TreatmentsIntent" />
+		<property name="speachName" value="treatmentsinfo" />
+   		<property name="repromptName" value="treatmentsinfo" />
+   		<property name="cardName" value="treatmentsinfo" />
+	</bean>
+	
+	<bean id="completedIntentHandler"
+		class="com.symtoms.checker.alexa.handler.CompletedIntentHandler">
+		<property name="intentName" value="completedIntent" />
+		<property name="speachName" value="completedinfo" />
+   		<property name="cardName" value="completedinfo" />
+	</bean>
+	
+	
 	<bean id="handlerDetails"
 		class="com.symtoms.checker.alexa.data.HandlerDetails">
 		<property name="handlerList">
@@ -159,15 +188,22 @@
 	    <entry key="ONE" value-ref="genderIdentificationIntentHandler"/>
 	    <entry key="TWO" value-ref="bodySpecificLocationIntentHandler"/>
 	    <entry key="THREE" value-ref="bodyLocationSymptonHandler"/>
-	    <entry key="FROUR" value-ref="proposedSymtomsIntentHandler"/>
+	    <entry key="FOUR" value-ref="proposedSymtomsIntentHandler"/>
 	    <entry key="FIVE" value-ref="proposedSymtomsIntentHandler"/>
 	    <entry key="SIX" value-ref="getDiagnosisDetailsIntentHandler"/>
+	    <entry key="SEVEN" value-ref="medicalConditionsIntentHandler"/>
+	    <entry key="EIGHT" value-ref="treatmentsIntentHandler"/>
+	    <entry key="COMPLETED" value-ref="genderIdentificationIntentHandler"/>
 	</util:map>
 	<util:map id="handlerMapperNoIntent" map-class="java.util.HashMap">
 	    <entry key="TWO" value-ref="bodyLocationHandler"/>
 	    <entry key="THREE" value-ref="bodySpecificLocationIntentHandler"/>
-	    <entry key="FROUR" value-ref="bodyLocationSymptonHandler"/>
+	    <entry key="FOUR" value-ref="bodyLocationSymptonHandler"/>
 	    <entry key="FIVE" value-ref="proposedSymtomsIntentHandler"/>
+	    <entry key="SIX" value-ref="completedIntentHandler"/>
+	    <entry key="SEVEN" value-ref="completedIntentHandler"/>
+	    <entry key="EIGHT" value-ref="completedIntentHandler"/>
+	    <entry key="COMPLETED" value-ref="completedIntentHandler"/>
 	</util:map>
 
 	<bean id="diagnosisClient"

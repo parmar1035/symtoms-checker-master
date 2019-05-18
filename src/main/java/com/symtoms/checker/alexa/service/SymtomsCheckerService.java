@@ -10,6 +10,8 @@ public interface SymtomsCheckerService {
 	final String YES_NO_SESSION_KEY = "YES_NO_SESSION_KEY";
 	final String STEP_SESSION_KEY = "STEP_SESSION_KEY";
 	
+	void clearSymtomSession(final HandlerInput input);
+	
 	void setSymtomsIntoSession(final SelectedSymtoms symtoms, final HandlerInput input);
 	
 	SelectedSymtoms getSymtomsFromSession(final HandlerInput input);

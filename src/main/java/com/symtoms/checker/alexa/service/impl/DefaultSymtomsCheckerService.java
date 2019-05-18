@@ -1,20 +1,23 @@
 package com.symtoms.checker.alexa.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.symtoms.checker.alexa.data.SelectedSymtoms;
 import com.symtoms.checker.alexa.data.Steps;
-import com.symtoms.checker.alexa.priaid.diagnosis.model.HealthItem;
 import com.symtoms.checker.alexa.service.SymtomsCheckerService;
 
 public class DefaultSymtomsCheckerService implements SymtomsCheckerService{
 
+	@Override
+	public void clearSymtomSession(HandlerInput input) {
+		input.getAttributesManager()
+		 .getSessionAttributes()
+		 .remove(SYMTOMS_SESSION_KEY);
+		
+	}
+	
 	@Override
 	public void setSymtomsIntoSession(SelectedSymtoms symtoms, HandlerInput input) {
 		input.getAttributesManager()
@@ -70,5 +73,7 @@ public class DefaultSymtomsCheckerService implements SymtomsCheckerService{
 		}
 		return step;
 	}
+
+	
 
 }
