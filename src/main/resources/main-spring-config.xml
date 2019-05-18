@@ -98,6 +98,7 @@
 		class="com.symtoms.checker.alexa.handler.GetDiagnosisDetailsIntentHandler">
 		<property name="intentName" value="GetDiagnosisDetailsIntent" />
 		<property name="speachName" value="getDiagnosisDetails" />
+		<property name="cardName" value="getDiagnosisDetails" />
 	</bean>
 	<bean id="helpHandler"
 		class="com.symtoms.checker.alexa.handler.HelpIntentHandler">

@@ -27,7 +27,7 @@ public class MedicalConditionsIntentHandler extends AbstractIntentHandler {
 		HealthIssueInfo healthIssueInfo = selectedSymtoms.getHealthIssueInfo();
 		String healthDetails = healthIssueInfo.MedicalCondition;
 		healthDetails = healthDetails.replaceAll("[^ .,a-zA-Z0-9]", StringUtils.EMPTY);
-		addModel(input, "healthDetails", healthDetails);
+		addModel(input, "medicalConditions", healthDetails);
 		symtomsCheckerService.setStepIntoSession(Steps.EIGHT, input);
 		
 	}

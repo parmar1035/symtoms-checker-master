@@ -1,6 +1,7 @@
 package com.symtoms.checker.alexa.handler;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.model.Response;
 import com.symtoms.checker.alexa.data.SelectedSymtoms;
 import com.symtoms.checker.alexa.data.Steps;
 import com.symtoms.checker.alexa.integration.client.DiagnosisClient;
@@ -25,6 +27,9 @@ public class GetDiagnosisDetailsIntentHandler extends AbstractIntentHandler {
 
 	@Resource(name="symtomsCheckerService")
 	SymtomsCheckerService symtomsCheckerService; 
+	
+	@Resource(name="medicalConditionsIntentHandler")
+	MedicalConditionsIntentHandler medicalConditionsIntentHandler;
 
 	@Override
 	protected void handleInternal(HandlerInput input) {
@@ -47,13 +52,21 @@ public class GetDiagnosisDetailsIntentHandler extends AbstractIntentHandler {
 			selectedSymtoms.setHealthIssueInfo(healthIssueInfo);
 		} 
 
-		String healthDetails = healthIssueInfo.Description;
+		/*String healthDetails = healthIssueInfo.Description;
 		healthDetails = healthDetails.replaceAll("[^ .,a-zA-Z0-9]", StringUtils.EMPTY);
 		addModel(input, "issueDetails", healthDetails);
-		LOG.error("issueDetails : {}" + healthDetails);
+		LOG.error("issueDetails : {}" + healthDetails);*/
 		symtomsCheckerService.setSymtomsIntoSession(selectedSymtoms, input);
-		symtomsCheckerService.setStepIntoSession(Steps.SEVEN, input);
+		//symtomsCheckerService.setStepIntoSession(Steps.SEVEN, input);
 	}
+	
+	@Override
+    public Optional<Response> handle(HandlerInput input) {
+		handleInternal(input);
+		return medicalConditionsIntentHandler.handle(input);
+	}
+	
+	
 	int getNumberFromString(String position) {
 		if(StringUtils.isEmpty(position))
 		{
